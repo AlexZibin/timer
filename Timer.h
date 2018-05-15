@@ -15,6 +15,7 @@ class Timer {
 		unsigned long remainingTime (void);
 		void switchOn ();
 		void switchOff ();
+		void prepareToTrigger ();
 		bool isOn (); // 1=ВКЛ, 0=ВЫКЛ
 		bool needToTrigger ();
 	private:

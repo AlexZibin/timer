@@ -70,3 +70,9 @@ bool Timer::needToTrigger(){
   }
   else return false;
 }
+
+void Timer::prepareToTrigger(){
+	_previousMillis = millis() - 1 - _intervalMillis;
+}
+
+
