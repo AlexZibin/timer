@@ -19,11 +19,11 @@ class Timer {
 		bool isOn (); // 1=ВКЛ, 0=ВЫКЛ
 		bool needToTrigger ();
 	private:
-		unsigned long _intervalMillis;
-		volatile unsigned long _previousMillis;
-		bool _isOn=false;
+	    unsigned long _intervalMillis;
+        unsigned long _debugInterval;
+	    volatile unsigned long _previousMillis;
+	    bool _isOn=false;
         char *_timerName;
 };
-
 
 #endif
