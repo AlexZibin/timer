@@ -8,9 +8,9 @@ class Timer {
 	public:
 //		Timer (unsigned long intervalMillis=1000*30, bool switch_on = true);
 		Timer (void);
-		Timer (unsigned long intervalMillis, const char *dummy);
+		Timer (unsigned long intervalMillis, const char *timerName);
 		Timer (unsigned long hours, unsigned long minutes, unsigned long seconds=0);
-		unsigned long setInterval (const char *dummy, unsigned long intervalMillis);
+		unsigned long setInterval (const char *timerName, unsigned long intervalMillis);
 		unsigned long getInterval (void);
 		unsigned long remainingTime (void);
 		void switchOn ();
@@ -22,6 +22,7 @@ class Timer {
 		unsigned long _intervalMillis;
 		volatile unsigned long _previousMillis;
 		bool _isOn=false;
+        char *_timerName;
 };
 
 
