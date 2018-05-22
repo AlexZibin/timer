@@ -65,7 +65,7 @@ bool Timer::needToTrigger(){
   
   unsigned long timePassed = millis ()-_previousMillis;
     
-    if (millis () - _debugInterval > 1000) {
+    if ((millis () - _debugInterval > 1000) && (strlen (_timerName) > 2)) {
         _debugInterval = millis (); 
         Serial.print ("Timer:"); Serial.print (_timerName); Serial.print (":needToTrigger: "); Serial.println (_debugInterval - _previousMillis); 
     }
@@ -76,7 +76,6 @@ bool Timer::needToTrigger(){
         Serial.println(_previousMillis); 
         Serial.println(timePassed); delay (1000); */
 
-
         _previousMillis = millis();
         return true;
   }
@@ -86,5 +85,3 @@ bool Timer::needToTrigger(){
 void Timer::prepareToTrigger(){
 	_previousMillis = millis() - 1 - _intervalMillis;
 }
-
-
