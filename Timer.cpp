@@ -7,8 +7,8 @@ Timer::Timer (void) {
 	switchOff ();
 }
 
-Timer::Timer (unsigned long intervalMillis, char *dummy) {
-	setInterval ("ms", intervalMillis);
+Timer::Timer (unsigned long intervalMillis, const char *_timerName) {
+	setInterval (_timerName, intervalMillis);
 	if (switch_on) 
 		switchOn ();
 	else 
@@ -23,8 +23,14 @@ Timer::Timer (unsigned long hours, unsigned long minutes, unsigned long seconds)
 		switchOff ();
 }
 
-unsigned long Timer::setInterval (char *dummy, unsigned long intervalMillis){
+unsigned long Timer::setInterval (const char *_timerName, unsigned long intervalMillis){
 	_intervalMillis = intervalMillis>10ul?intervalMillis:10ul;
+    _timerName = timerName;
+    
+    // Info for debugging:
+    if (strlen (_timerName) > 2) {
+        Serial.print ("Timer::setInterval ("); Serial.print (_timerName); Serial.print (", "); Serial.println (_intervalMillis);
+    }
 	  
 	//  Serial.print("\n Timer.cpp \n New timer interval: ");
 //      Serial.println(intervalMillis);
@@ -42,7 +48,7 @@ unsigned long Timer::remainingTime (void) {
 }
 
 void Timer::switchOn () {
-	_isOn = true;
+    _isOn = true;
     _previousMillis = millis();
 }
 
