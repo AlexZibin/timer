@@ -49,30 +49,36 @@ unsigned long Timer::remainingTime (void) {
 
 void Timer::switchOn () {
     _isOn = true;
-    _previousMillis = millis();
+    _debugInterval = _previousMillis = millis();
 }
 
 void Timer::switchOff (){
 	_isOn = false;
 }
 
-bool Timer::isOn (){
+bool Timer::isOn () {
 	return _isOn;
 }
 
 bool Timer::needToTrigger(){
   if (!isOn()) return false;
   
-  unsigned long timePassed = millis()-_previousMillis;
+  unsigned long timePassed = millis ()-_previousMillis;
+    
+    if (millis () - _debugInterval > 1000) {
+        _debugInterval = millis (); 
+        Serial.print ("Timer:"); Serial.print (_timerName); Serial.print (":needToTrigger: "); Serial.println (_debugInterval - _previousMillis); 
+    }
+    
   if (timePassed > _intervalMillis ) {
 	  
-	/*Serial.println(_intervalMillis); 
-	Serial.println(_previousMillis); 
-	Serial.println(timePassed); delay (1000); */
+        /*Serial.println(_intervalMillis); 
+        Serial.println(_previousMillis); 
+        Serial.println(timePassed); delay (1000); */
 
-	
-    _previousMillis = millis();
-	return true;
+
+        _previousMillis = millis();
+        return true;
   }
   else return false;
 }
