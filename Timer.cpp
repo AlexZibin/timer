@@ -23,7 +23,7 @@ Timer::Timer (unsigned long hours, unsigned long minutes, unsigned long seconds)
 		switchOff ();
 }
 
-unsigned long Timer::setInterval (const char *_timerName, unsigned long intervalMillis){
+unsigned long Timer::setInterval (const char *timerName, unsigned long intervalMillis){
 	_intervalMillis = intervalMillis>10ul?intervalMillis:10ul;
     _timerName = timerName;
     
