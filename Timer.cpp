@@ -28,9 +28,9 @@ unsigned long Timer::setInterval (const char *timerName, unsigned long intervalM
     _timerName = timerName;
     
     // Info for debugging:
-    if (strlen (_timerName) > 2) {
+    /*if (strlen (_timerName) > 2) {
         Serial.print ("Timer::setInterval ("); Serial.print (_timerName); Serial.print (", "); Serial.println (_intervalMillis);
-    }
+    }*/
 	  
 	//  Serial.print("\n Timer.cpp \n New timer interval: ");
 //      Serial.println(intervalMillis);
@@ -67,7 +67,7 @@ bool Timer::needToTrigger(){
     
     if ((millis () - _debugInterval > 1000) && (strlen (_timerName) > 2)) {
         _debugInterval = millis (); 
-        Serial.print ("Timer:"); Serial.print (_timerName); Serial.print (":needToTrigger: "); Serial.println (_debugInterval - _previousMillis); 
+        //Serial.print (F("Timer:")); Serial.print (_timerName); Serial.print (F(":needToTrigger: ")); Serial.println (_debugInterval - _previousMillis); 
     }
     
   if (timePassed > _intervalMillis ) {

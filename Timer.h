@@ -23,7 +23,7 @@ class Timer {
         unsigned long _debugInterval;
 	    volatile unsigned long _previousMillis;
 	    bool _isOn=false;
-        char *_timerName;
+        const char *_timerName;
 };
 
 #endif
