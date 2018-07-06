@@ -60,7 +60,7 @@ bool Timer::isOn () {
 	return _isOn;
 }
 
-bool Timer::needToTrigger(){
+bool Timer::needToTrigger () {
   if (!isOn()) return false;
   
   unsigned long timePassed = millis ()-_previousMillis;
