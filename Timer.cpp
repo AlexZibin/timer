@@ -23,7 +23,7 @@ Timer::Timer (unsigned long hours, unsigned long minutes, unsigned long seconds)
 		switchOff ();
 }
 
-unsigned long Timer::setInterval (const char *timerName, unsigned long intervalMillis){
+unsigned long Timer::setInterval (const char *timerName, unsigned long intervalMillis) {
 	_intervalMillis = intervalMillis>10ul?intervalMillis:10ul;
     _timerName = timerName;
     
@@ -38,50 +38,50 @@ unsigned long Timer::setInterval (const char *timerName, unsigned long intervalM
 	return _intervalMillis;
 }
 
-unsigned long Timer::getInterval (void) {
+inline unsigned long Timer::getInterval (void) {
 	return _intervalMillis;
 }
 
 unsigned long Timer::remainingTime (void) {
-	unsigned long timePassed = millis()-_previousMillis;
+	unsigned long timePassed = millis ()-_previousMillis;
 	return _intervalMillis-timePassed;
 }
 
 void Timer::switchOn () {
     _isOn = true;
-    _debugInterval = _previousMillis = millis();
+    _debugInterval = _previousMillis = millis ();
 }
 
-void Timer::switchOff (){
+inline void Timer::switchOff () {
 	_isOn = false;
 }
 
-bool Timer::isOn () {
+inline bool Timer::isOn () {
 	return _isOn;
 }
 
 bool Timer::needToTrigger () {
-  if (!isOn()) return false;
-  
-  unsigned long timePassed = millis ()-_previousMillis;
-    
+    if (!isOn()) return false;
+
+    unsigned long timePassed = millis ()-_previousMillis;
+
     if ((millis () - _debugInterval > 1000) && (strlen (_timerName) > 2)) {
         _debugInterval = millis (); 
         //Serial.print (F("Timer:")); Serial.print (_timerName); Serial.print (F(":needToTrigger: ")); Serial.println (_debugInterval - _previousMillis); 
     }
-    
-  if (timePassed > _intervalMillis ) {
-	  
+
+    if (timePassed > _intervalMillis ) {
+
         /*Serial.println(_intervalMillis); 
         Serial.println(_previousMillis); 
         Serial.println(timePassed); delay (1000); */
 
-        _previousMillis = millis();
+        _previousMillis = millis ();
         return true;
-  }
-  else return false;
+    }
+    else return false;
 }
 
-void Timer::prepareToTrigger(){
-	_previousMillis = millis() - 1 - _intervalMillis;
+void Timer::prepareToTrigger () {
+	_previousMillis = millis () - 1 - _intervalMillis;
 }
